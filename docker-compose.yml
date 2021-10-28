@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  nest-api:
+    image: imgobligatorio #nombre de la imagen que hemos creado
+    restart: always
+    container_name: nosql-obligatorio
+    ports:
+      - '8080:8080'
