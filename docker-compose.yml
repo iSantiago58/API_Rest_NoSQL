@@ -3,6 +3,6 @@ services:
   nest-api:
     image: imgobligatorio #nombre de la imagen que hemos creado
     restart: always
-    container_name: nosql-obligatorio
+    container_name: nosql-obligatorio #nombre del contenedor que va a levantar la imagen
     ports:
       - '8080:8080'

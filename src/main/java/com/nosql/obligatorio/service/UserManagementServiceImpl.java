@@ -229,15 +229,15 @@ public class UserManagementServiceImpl implements UserManagementService{
     }
 
     @Override
-    public String auth(Usuario user){
+    public String auth(String correo, String passw){
         // -- Se verifica la existencia del usuario y la contraseña
-        ApiFuture<DocumentSnapshot> querySnapshotApiFuture = getColeccionUsuarios().document(user.getCorreo()).get();
+        ApiFuture<DocumentSnapshot> querySnapshotApiFuture = getColeccionUsuarios().document(correo).get();
 
         try {
             DocumentSnapshot document = querySnapshotApiFuture.get();
             if (document.exists()){
                 Map<String,Object> infoUser = document.getData();
-                if (infoUser.get("pass").equals(user.getPass())){
+                if (infoUser.get("pass").equals(passw)){
                     return "true";
                 }
 

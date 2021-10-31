@@ -18,7 +18,8 @@ public class FirebaseInitializer {
     @PostConstruct
     private void iniFirestore() throws IOException {
 
-        InputStream serviceAccount = getClass().getClassLoader().getResourceAsStream("private-key-firestore.json");//new FileInputStream("path/to/serviceAccountKey.json");
+        InputStream serviceAccount = getClass().getClassLoader()
+                .getResourceAsStream("private-key-firestore.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))

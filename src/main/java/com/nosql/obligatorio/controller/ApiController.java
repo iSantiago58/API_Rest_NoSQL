@@ -42,10 +42,10 @@ public class ApiController {
         return new ResponseEntity(service.deleteRole(usuario), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, String> auth(@RequestBody Usuario usuario) {
+    @RequestMapping(value = "/auth/{correo}/{passw}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Map<String, String> auth(@PathVariable String correo, @PathVariable String passw) {
         HashMap<String, String> map = new HashMap<>();
-        String auth = service.auth(usuario);
+        String auth = service.auth(correo, passw);
         map.put("Autenticación", auth);
         return map;
     }

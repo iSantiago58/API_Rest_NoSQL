@@ -16,5 +16,5 @@ public interface UserManagementService {
 
     List<CodigoError> errores();
 
-    String auth(Usuario usuario);
+    String auth(String correo, String pass);
 }
