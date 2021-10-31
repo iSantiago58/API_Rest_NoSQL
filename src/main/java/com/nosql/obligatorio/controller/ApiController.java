@@ -1,16 +1,9 @@
 package com.nosql.obligatorio.controller;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.nosql.obligatorio.entity.CodigoError;
 import com.nosql.obligatorio.entity.Usuario;
 import com.nosql.obligatorio.service.UserManagementService;
-import org.apache.commons.collections4.MultiValuedMap;
-import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
-import org.apache.coyote.Response;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

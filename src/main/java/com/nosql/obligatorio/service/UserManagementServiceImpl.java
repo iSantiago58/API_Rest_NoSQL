@@ -25,16 +25,15 @@ public class UserManagementServiceImpl implements UserManagementService{
     public CodigoError add(Usuario usuario) throws Exception {
 
         Boolean existeUsuario = false;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getColeccionUsuarios().get();
+        ApiFuture<DocumentSnapshot> querySnapshotApiFuture = getColeccionUsuarios().document(usuario.getCorreo()).get();
         CodigoError mensRet = new CodigoError();
         // -- Se usa codigo 200 en todos los casos, menos cuando se genera el error de usuario ya existente
         mensRet.setCodigo("200");
+        DocumentSnapshot document = querySnapshotApiFuture.get();
         try {
-            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()){
-                if (doc.getId().equals(usuario.getCorreo())){
+                if (document.getId().equals(usuario.getCorreo())){
                     existeUsuario = true;
                 }
-            }
             if (existeUsuario){
                 throw new CustomException("El usuario con correo " + usuario.getCorreo() + " ya existe en el sistema.");
             }
@@ -70,21 +69,20 @@ public class UserManagementServiceImpl implements UserManagementService{
         Boolean existeUsuario = false;
         Boolean passCorrecta = true;
         Usuario usuario = null;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getColeccionUsuarios().get();
+        ApiFuture<DocumentSnapshot> querySnapshotApiFuture = getColeccionUsuarios().document(user.getCorreo()).get();
         CodigoError mensRet = new CodigoError();
         // -- Se usa codigo 200 en todos los casos, menos cuando se genera el error de usuario no existe en el sistema
         // -- o si la contraseña ingresada no coincide
         mensRet.setCodigo("200");
         try {
-            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()){
-                if (doc.getId().equals(user.getCorreo())){
+            DocumentSnapshot document = querySnapshotApiFuture.get();
+                if (document.getId().equals(user.getCorreo()) && document.exists()){
                     existeUsuario = true;
-                    usuario = doc.toObject(Usuario.class);
+                    usuario = document.toObject(Usuario.class);
                     if (!usuario.getPass().equals(user.getPass())){
                         passCorrecta = false;
                     }
                 }
-            }
             if (!existeUsuario){
                 mensRet.setCodigo("102");
                 throw new CustomException("El usuario con correo " + user.getCorreo() + " NO existe en el sistema."  );
@@ -133,21 +131,20 @@ public class UserManagementServiceImpl implements UserManagementService{
         Boolean existeUsuario = false;
         Boolean passCorrecta = true;
         Usuario usuario = null;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getColeccionUsuarios().get();
+        ApiFuture<DocumentSnapshot> querySnapshotApiFuture = getColeccionUsuarios().document(user.getCorreo()).get();
         CodigoError mensRet = new CodigoError();
         // -- Se usa codigo 200 en todos los casos, menos cuando se genera el error de usuario no existe en el sistema
         // -- o si la contraseña ingresada no coincide
         mensRet.setCodigo("200");
         try {
-            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()){
-                if (doc.getId().equals(user.getCorreo())){
+            DocumentSnapshot document = querySnapshotApiFuture.get();
+                if (document.getId().equals(user.getCorreo()) && document.exists()){
                     existeUsuario = true;
-                    usuario = doc.toObject(Usuario.class);
+                    usuario = document.toObject(Usuario.class);
                     if (!usuario.getPass().equals(user.getPass())){
                         passCorrecta = false;
                     }
                 }
-            }
             if (!existeUsuario){
                 mensRet.setCodigo("102");
                 throw new CustomException("El usuario con correo " + user.getCorreo() + " NO existe en el sistema."  );
@@ -234,20 +231,22 @@ public class UserManagementServiceImpl implements UserManagementService{
     @Override
     public String auth(Usuario user){
         // -- Se verifica la existencia del usuario y la contraseña
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getColeccionUsuarios().get();
+        ApiFuture<DocumentSnapshot> querySnapshotApiFuture = getColeccionUsuarios().document(user.getCorreo()).get();
 
         try {
-            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()){
-                if (doc.getId().equals(user.getCorreo())){
-                    Usuario usuario = doc.toObject(Usuario.class);
-                    if (usuario.getPass().equals(user.getPass())){
-                        return "true";
-                    }
+            DocumentSnapshot document = querySnapshotApiFuture.get();
+            if (document.exists()){
+                Map<String,Object> infoUser = document.getData();
+                if (infoUser.get("pass").equals(user.getPass())){
+                    return "true";
                 }
+
             }
+
         }  catch (Exception e) {
             e.printStackTrace();
         }
+
         return "false";
 
     }
