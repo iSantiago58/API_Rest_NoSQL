@@ -31,9 +31,9 @@ public class UserManagementServiceImpl implements UserManagementService{
         mensRet.setCodigo("200");
         DocumentSnapshot document = querySnapshotApiFuture.get();
         try {
-                if (document.getId().equals(usuario.getCorreo())){
-                    existeUsuario = true;
-                }
+            if (document.getId().equals(usuario.getCorreo()) && document.exists()){
+                existeUsuario = true;
+            }
             if (existeUsuario){
                 throw new CustomException("El usuario con correo " + usuario.getCorreo() + " ya existe en el sistema.");
             }
