@@ -4,6 +4,7 @@
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Docker](https://www.docker.com/get-started)
 - Java 8+
+- [JMeter](https://jmeter.apache.org/)
 
 
 ### Tecnologías utilizadas
@@ -18,5 +19,6 @@
     - docker-compose up -d
     
     
-* La colección de postman se encuentra en la raíz del proyecto
+- La colección de postman se encuentra en la raíz del proyecto
         
+- El plan de pruebas para ejecutar en JMeter se encuentra en la raíz del proyecto
