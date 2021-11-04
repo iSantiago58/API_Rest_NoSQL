@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "a8bb63e5-c2cf-41e2-8429-220cc43288b0",
+		"name": "API NoSQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/api/errores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/errores",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"errores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/agregar/usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"prueba1@gmail.com\",\r\n    \"pass\": \"prueba1\",\r\n    \"nombre\": \"Nombre 1\",\r\n    \"apellido\": \"Apellido 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/agregar/usuario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregar",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/agregar/usuario Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"prueba2@gmail.com\",\r\n    \"pass\": \"prueba2\",\r\n    \"nombre\": \"Nombre 2\",\r\n    \"apellido\": \"Apellido 2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/agregar/usuario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregar",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/agregar/usuario Copy 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"prueba3@gmail.com\",\r\n    \"pass\": \"prueba3\",\r\n    \"nombre\": \"Nombre 3\",\r\n    \"apellido\": \"Apellido 3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/agregar/usuario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregar",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/agregar/usuario Copy 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"prueba1@gmail.com\",\r\n    \"pass\": \"prueba10000\",\r\n    \"nombre\": \"Nombre Repetido 1\",\r\n    \"apellido\": \"Apellido Repetido 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/agregar/usuario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregar",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/agregar/roles",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"prueba1@gmail.com\",\r\n    \"pass\": \"prueba1\",\r\n    \"roles\": [\"rol1\", \"rol2\", \"rol3\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/agregar/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregar",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/agregar/roles Copy",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"prueba1@gmail.com\",\r\n    \"pass\": \"pruebaXX\",\r\n    \"roles\": [\"rol1\", \"rol2\", \"rol3\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/agregar/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregar",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/agregar/roles Copy 2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"pruebaX@gmail.com\",\r\n    \"pass\": \"prueba1\",\r\n    \"roles\": [\"rol1\", \"rol2\", \"rol3\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/agregar/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"agregar",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/eliminar/roles",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"prueba1@gmail.com\",\r\n    \"pass\": \"prueba1\",\r\n    \"roles\": [\"rol1\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/eliminar/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"eliminar",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/eliminar/roles Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"prueba1@gmail.com\",\r\n    \"pass\": \"prueba1\",\r\n    \"roles\": [\"rol100\",\"rol101\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/eliminar/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"eliminar",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/auth/pruebadoc@gmail.com/1234",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/auth/pruebaZ@gmail.com/pruebaZ",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"pruebaZ@gmail.com",
+						"pruebaZ"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/auth/pruebadoc@gmail.com/1234 Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/auth/prueba1@gmail.com/prueba1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"prueba1@gmail.com",
+						"prueba1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
