@@ -26,13 +26,11 @@ public class ApiController {
     }
 
     @PostMapping(value = "/agregar/usuario")
-    // -- @RequestBody -> Transforma el JSON al objeto que se quiere mapear
     public ResponseEntity add(@RequestBody Usuario usuario) throws Exception {
         return new ResponseEntity(service.add(usuario), HttpStatus.OK);
     }
 
     @PutMapping(value = "/agregar/roles")
-    // -- @RequestBody -> Transforma el JSON al objeto que se quiere mapear
     public ResponseEntity addRole(@RequestBody Usuario usuario) throws Exception {
         return new ResponseEntity(service.addRole(usuario), HttpStatus.OK);
     }

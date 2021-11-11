@@ -25,6 +25,7 @@ public class UserManagementServiceImpl implements UserManagementService{
     public CodigoError add(Usuario usuario) throws Exception {
 
         Boolean existeUsuario = false;
+        // -- getColeccionUsuarios() = firebase.getFirestore().collection("Usuarios");
         ApiFuture<DocumentSnapshot> querySnapshotApiFuture = getColeccionUsuarios().document(usuario.getCorreo()).get();
         CodigoError mensRet = new CodigoError();
         // -- Se usa codigo 200 en todos los casos, menos cuando se genera el error de usuario ya existente
@@ -79,6 +80,7 @@ public class UserManagementServiceImpl implements UserManagementService{
                 if (document.getId().equals(user.getCorreo()) && document.exists()){
                     existeUsuario = true;
                     usuario = document.toObject(Usuario.class);
+                    usuario.setCorreo(user.getCorreo());
                     if (!usuario.getPass().equals(user.getPass())){
                         passCorrecta = false;
                     }
@@ -96,11 +98,18 @@ public class UserManagementServiceImpl implements UserManagementService{
             return mensRet;
         }
 
-        ArrayList<String> rolesNuevos = usuario.getRoles();
-        for (int i =0; i< user.getRoles().size(); i++){
+        ArrayList<String> rolesNuevos = new ArrayList<>();
+        if (usuario.getRoles() != null && !usuario.getRoles().isEmpty()) {
+            rolesNuevos = usuario.getRoles();
+        }
+
+        for (int i = 0; i < user.getRoles().size(); i++) {
             String rol = user.getRoles().get(i);
-            Boolean hayRol = usuario.getRoles().contains(rol);
-            if (!hayRol){
+            Boolean hayRol = false;
+            if (usuario.getRoles() != null && !usuario.getRoles().isEmpty()) {
+                hayRol = usuario.getRoles().contains(rol);
+            }
+            if (!hayRol) {
                 rolesNuevos.add(rol);
             }
         }
@@ -141,6 +150,7 @@ public class UserManagementServiceImpl implements UserManagementService{
                 if (document.getId().equals(user.getCorreo()) && document.exists()){
                     existeUsuario = true;
                     usuario = document.toObject(Usuario.class);
+                    usuario.setCorreo(user.getCorreo());
                     if (!usuario.getPass().equals(user.getPass())){
                         passCorrecta = false;
                     }
@@ -163,14 +173,15 @@ public class UserManagementServiceImpl implements UserManagementService{
         String msgError = "Los Roles ";
         ArrayList<String> rolesExistentesUsuario = usuario.getRoles();
         try{
-            for (int i =0; i< user.getRoles().size(); i++){
-                String rol = user.getRoles().get(i);
-                Boolean hayRol = rolesExistentesUsuario.contains(rol);
-                if (!hayRol){
-                    hayMsgError = true;
-                    msgError = msgError + rol + ", ";
+                for (int i = 0; i < user.getRoles().size(); i++) {
+                    String rol = user.getRoles().get(i);
+                    Boolean hayRol = rolesExistentesUsuario.contains(rol);
+                    if (!hayRol) {
+                        hayMsgError = true;
+                        msgError = msgError + rol + ", ";
+                    }
                 }
-            }
+
             if (hayMsgError){
                 mensRet.setCodigo("103");
                 msgError = msgError + "no están asociados al usuario con correo " + user.getCorreo();
@@ -185,12 +196,13 @@ public class UserManagementServiceImpl implements UserManagementService{
         // -- Se actualizan los roles del usuario
         ArrayList<String> rolesActualizados = new ArrayList<>();
         ArrayList<String> rolesBorrarUsuario = user.getRoles();
-
-        for (int i =0; i< usuario.getRoles().size(); i++){
-            String rol = usuario.getRoles().get(i);        // -- roles que tiene el usuario
-            Boolean hayRol = rolesBorrarUsuario.contains(rol);
-            if (!hayRol){
-                rolesActualizados.add(rol);
+        if (rolesBorrarUsuario != null && !rolesBorrarUsuario.isEmpty()) {
+            for (int i = 0; i < usuario.getRoles().size(); i++) {
+                String rol = usuario.getRoles().get(i);        // -- roles que tiene el usuario
+                Boolean hayRol = rolesBorrarUsuario.contains(rol);
+                if (!hayRol) {
+                    rolesActualizados.add(rol);
+                }
             }
         }
         Map<String, Object> docData = new HashMap<>();
